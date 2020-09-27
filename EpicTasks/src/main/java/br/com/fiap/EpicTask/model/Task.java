@@ -21,11 +21,11 @@ public class Task {
 	@NotBlank(message = "{task.description.blank}")
 	private String description; 
 	
-	@Min(1)
-	@Max(100)
+	@Min(value = 1, message = "{task.point.range}")
+	@Max(value = 100, message = "{task.point.range}")
 	private int point; 
 	
-	@Max(100)
+	@Max(value = 100, message = "{task.status.range}")
 	private int status;
 
 	public Long getId() {

@@ -11,34 +11,42 @@
 	<a href="/task/new" class="btn-sm btn-primary">
 		<span class="material-icons">add</span>
 	</a>
-	
-	<span class="alert" th:if="${message != null}" th:text="${message}"></span>
+	<div class="content">
+		<span class="alert" th:if="${message != null}" th:text="${message}"></span>	
+	</div>
 	
 	<div class="tasks">
+	
 		<div class="card-task" th:each="task : ${tasks}">
-				<img class="avatar" src="">
-				<h2 th:text="${task.title}"></h2>
-				<div class="point">
-					<span class="material-icons">star</span>
-					<span th:text="${task.point}"></span>
-				</div> 
+
+			<h2 th:text="${task.title}"></h2>
 			
-				<div class="status">
-					<svg>
-						<circle cx="70" cy="70" r="70"></circle>
-						<circle cx="70" cy="70" r="70" style="stroke-dashoffset: calc(440 - (440 * 90 )/100 ) "></circle>
-					</svg>
-					<div class="number">
-						<h2 th:text="${task.status}"></h2>
-					</div>
+			<div class="point">
+				<span class="material-icons">star</span>
+				<span th:text="${task.point}"></span>
+			</div> 
+		
+			<div class="status">
+				<svg>
+					<circle cx="70" cy="70" r="70"></circle>
+					<circle 
+					th:field="*{status}"
+					th:value="${task.status}"
+					cx="70" cy="70" r="70"
+					th:style="${'stroke-dashoffset:' + (440 - (440 * task.status)/100)}"
+					></circle>
+				</svg>
+				<div class="number">
+					<h2 th:text="${task.status} + '%'"></h2>
 				</div>
-				
-				<button class="btn-hand">
-					<span class="material-icons">pan_tool</span>
-				</button>
-				<a class="btn btn-sm yellow" th:href="${'/task/' + task.id }">
-					<span class="material-icons">edit</span>
-				</a>
+			</div>
+			
+			<button class="btn-hand">
+				<span class="material-icons">pan_tool</span>
+			</button>
+			<a class="btn btn-sm yellow" th:href="${'/task/' + task.id }">
+				<span class="material-icons">edit</span>
+			</a>
 		</div>
 	</div>
 

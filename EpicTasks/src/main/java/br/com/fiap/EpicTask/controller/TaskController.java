@@ -27,10 +27,11 @@ public class TaskController {
 	@Autowired
 	private TaskRepository repository;
 	
+	@Autowired
 	private MessageSource messageSource;
 
 	@GetMapping()
-	public ModelAndView tasks() {
+	public ModelAndView task() {
 		List<Task> tasks = repository.findAll();
 		ModelAndView modelAndView = new ModelAndView("tasks");
 		modelAndView.addObject("tasks", tasks);
